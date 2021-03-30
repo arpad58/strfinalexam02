@@ -36,11 +36,13 @@
           <h3>Todo List</h3>
         </div>
         <div class="col-2">
-          <button class="btn btn-secondary">
+                   <!-- sorter                 -->
+          <button (click)="onColumnSelect('title')"  class="btn btn-secondary">
             <i class="fa fa-sort-alpha-asc"></i>
           </button>
         </div>
         <div class="col-4">
+                 <!-- filter                 -->
           <input (keyup)="onFilterPhrase($event)"
           type="text" class="form-control" placeholder="search...">
         </div>
@@ -51,8 +53,9 @@
   <div class="row">
     <div class="col-12 col-md-8 offset-md-2">
       <div class="list-group mb-4">
+                                              <!-- filter         -->   <!-- sorter         -->
         <div
-          *ngFor="let todo of todos$ | async | filter: phrase: 'title'"
+          *ngFor="let todo of todos$ | async | filter: phrase: 'title' | sort: columnKey:direction"
           [class.active]="todo.active"
           class="list-group-item list-group-item-action d-flex"
           aria-current="true"
@@ -64,6 +67,7 @@
             <button class="btn btn-info">
               <i class="fa fa-check"></i>
             </button>
+                    <!-- delete        -->
             <button (click)="onDelete(todo)" class="btn btn-danger">
               <i class="fa fa-trash"></i>
             </button>

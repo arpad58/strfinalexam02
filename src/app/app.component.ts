@@ -13,6 +13,10 @@ export class AppComponent {
   /** filter */
   phrase: string = '';
 
+  /** sorter */
+  direction: number = 1;
+  columnKey: string = '';
+
   todos$: Observable<Todo[]> = this.todoService.getAll();
 
   selectedTodo: Todo = new Todo();
@@ -21,6 +25,7 @@ export class AppComponent {
     private todoService: TodoService,
   ) {}
 
+  /* delete */
   onDelete(todo: Todo): void {
     alert('Are you sure you want to delete?');
     this.todoService.delTodo(todo).subscribe(
@@ -33,6 +38,16 @@ export class AppComponent {
   /** filter */
   onFilterPhrase(event: Event): void {
     this.phrase = (event.target as HTMLInputElement).value;
+  }
+
+  /** sorter */
+  onColumnSelect(key: string): void {
+    if (this.columnKey === key) {
+      this.direction = this.direction * 1;  /* -1 esetén  */     /*  1 esetén  */     /*  1 esetén  */
+    } else {                           /* NÖVEKVŐ és CSÖKKENŐ*/    /* NÖVEKVŐ */    /* CSÖKKENŐ  */
+      this.direction = 1;                              /*  1 esetén  */    /*  1 esetén  */     /*  -1 esetén  */
+    }
+    this.columnKey = key;
   }
 
 }
