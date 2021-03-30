@@ -10,6 +10,9 @@ import { TodoService } from './service/todo.service';
 })
 export class AppComponent {
 
+  /** filter */
+  phrase: string = '';
+
   todos$: Observable<Todo[]> = this.todoService.getAll();
 
   selectedTodo: Todo = new Todo();
@@ -26,4 +29,10 @@ export class AppComponent {
        }
     );
   }
+
+  /** filter */
+  onFilterPhrase(event: Event): void {
+    this.phrase = (event.target as HTMLInputElement).value;
+  }
+
 }
