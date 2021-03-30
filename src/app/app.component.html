@@ -14,13 +14,23 @@
         <div class="form-group">
           <label>Title</label>
           <!-- Kötelező kitölteni, kisbetűk, nagybetűk, számok, szóköz, legalább 5 karakter. -->
-          <input name="title" [(ngModel)]="selectedTodo.title" type="text" class="form-control">
+          <input required pattern="[a-uA-U0-9 ]{5,}"
+          name="title" [(ngModel)]="selectedTodo.title"
+          type="text" class="form-control">
+          <div [hidden]="todoForm.controls.title?.valid || todoForm.controls.title.pristine" class="error-message">
+            Minimum 5 characters.
+          </div>
         </div>
         <div class="form-group">
           <label>Description</label>
           <!-- Kötelező kitölteni, kisbetűk, nagybetűk, számok, szóköz, legalább 25 karakter. -->
-          <textarea name="description" [(ngModel)]="selectedTodo.description" class="form-control">
-            </textarea>
+          <textarea required pattern="[a-uA-U0-9 ]{25,}"
+          name="description" [(ngModel)]="selectedTodo.description"
+          type="text" class="form-control">
+          </textarea>
+          <div [hidden]="todoForm.controls.description?.valid || todoForm.controls.description.pristine" class="error-message">
+            Minimum 25 characters.
+          </div>
         </div>
         <button class="btn btn-primary btn-block mt-2">
           <i class="fa fa-save"></i>
@@ -64,6 +74,7 @@
             {{ todo.title }}: {{ todo.description | slice:0:65 }}...
           </div>
           <div class="btn-group ml-auto p-2">
+                    <!-- update        -->
             <button (click)="onUpdate(todo)" class="btn btn-info">
               <i class="fa fa-check"></i>
             </button>
