@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Observable, of } from 'rxjs';
 import { Todo } from './model/todo';
 import { TodoService } from './service/todo.service';
+
 
 @Component({
   selector: 'app-root',
@@ -49,5 +51,11 @@ export class AppComponent {
     }
     this.columnKey = key;
   }
+
+  /* update */
+  onUpdate(todo: Todo): void {
+    todo.active=!todo.active;
+  }
+
 
 }

@@ -22,6 +22,7 @@ export class TodoService {
     return this.http.get<Todo>(`${this.endPoint}/${id}`);
   }
 
+
   /**
    * Create a new Todo.
    * @method: this.http.post
@@ -32,7 +33,9 @@ export class TodoService {
    * Update a Todo.
    * @method: this.http.patch
    */
-
+   update(todo: Todo): Observable<Todo> {
+    return this.http.patch<Todo>(`${this.endPoint}/${todo.id}`, todo);
+  }
 
   /**
    * Delete a Todo.
