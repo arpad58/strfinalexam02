@@ -17,4 +17,13 @@ export class AppComponent {
   constructor(
     private todoService: TodoService,
   ) {}
+
+  onDelete(todo: Todo): void {
+    alert('Are you sure you want to delete?');
+    this.todoService.delTodo(todo).subscribe(
+      () => {
+         this.todos$ = this.todoService.getAll();
+       }
+    );
+  }
 }
