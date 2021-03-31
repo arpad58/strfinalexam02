@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { Todo } from './model/todo';
 import { TodoService } from './service/todo.service';
@@ -57,5 +57,11 @@ export class AppComponent {
     todo.active=!todo.active;
   }
 
+  /* createte */
+  onCreate(todo: Todo): void {
+    this.todoService.create(todo).subscribe(
+      () => console.log("Done")
+    )
+  }
 
 }
